@@ -131,6 +131,8 @@ async function run({ url, model, language }) {
   report("load", { model: key, pct: null });
   const asr = await getAsr(key);
   let lang = language;
+  // A language the model does not know (Cantonese exists in large-v3 only) falls back to detection.
+  if (lang && lang !== "auto" && !(`<|${lang}|>` in asr.model.generation_config.lang_to_id)) lang = "auto";
   let restore = () => {};
   if (!lang || lang === "auto") {
     report("detect");

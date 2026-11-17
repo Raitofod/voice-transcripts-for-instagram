@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voice Transcripts for Instagram · Read voice messages as text, free and private</title>
+<meta name="description" content="Free browser extension that transcribes Instagram voice messages into text, in 99 languages, entirely on your computer with OpenAI Whisper. No upload, no account.">
+<link rel="canonical" href="https://raitofod.github.io/voice-transcripts-for-instagram/">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#140f2c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Voice Transcripts for Instagram">
+<meta property="og:description" content="Read your Instagram voice messages instead of listening. Free, private, on-device transcription in 99 languages.">
+<meta property="og:url" content="https://raitofod.github.io/voice-transcripts-for-instagram/">
+<meta property="og:image" content="https://raitofod.github.io/voice-transcripts-for-instagram/social-preview.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raitofod.github.io/voice-transcripts-for-instagram/social-preview.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Voice Transcripts for Instagram","applicationCategory":"BrowserApplication","operatingSystem":"Windows, macOS, Linux, ChromeOS","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free browser extension that transcribes Instagram voice messages into text on your computer, in 99 languages, with OpenAI Whisper.","url":"https://raitofod.github.io/voice-transcripts-for-instagram/","downloadUrl":"https://github.com/Raitofod/voice-transcripts-for-instagram/releases/latest","license":"https://opensource.org/licenses/MIT"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0a1c; --bg2: #140f2c; --fg: #f3f1ff; --muted: rgba(225,222,255,.68); --line: rgba(255,255,255,.1);
+    --card: rgba(255,255,255,.04); --accent: #7b5cff; --accent2: #5b4cf0; --soft: #b9a6ff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  html[lang="fr"] [data-en], html[lang="en"] [data-fr] { display: none !important; }
+  a { color: inherit; }
+  img { max-width: 100%; height: auto; display: block; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: rgba(12,10,28,.72); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; letter-spacing: -.01em; }
+  .logo img { width: 30px; height: 30px; }
+  .links { display: flex; gap: 22px; margin-left: auto; font-size: 14.5px; color: var(--muted); }
+  .links a { text-decoration: none; } .links a:hover { color: var(--fg); }
+  .lang { display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; font-size: 13px; font-weight: 600; }
+  .lang button { all: unset; cursor: pointer; padding: 5px 11px; color: var(--muted); }
+  .lang button.on { background: rgba(123,92,255,.25); color: var(--fg); }
+  .gh { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; text-decoration: none; padding: 7px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); }
+  .gh:hover { border-color: rgba(255,255,255,.25); }
+  .gh svg { width: 17px; height: 17px; fill: currentColor; }
+
+  /* hero */
+  .hero { position: relative; overflow: hidden; padding: 84px 0 72px;
+    background: radial-gradient(700px 480px at 12% 0%, rgba(150,115,255,.45), transparent 70%), radial-gradient(800px 600px at 100% 100%, rgba(64,110,255,.28), transparent 65%), linear-gradient(160deg, #1d1440, #0c0a1c 70%); }
+  .hero .wrap { display: grid; grid-template-columns: .95fr 1.25fr; gap: 40px; align-items: center; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: rgba(123,92,255,.16); border: 1px solid rgba(160,135,255,.35); color: #d9d0ff; }
+  .pill i { width: 7px; height: 7px; border-radius: 50%; background: #4cd38a; box-shadow: 0 0 10px #4cd38a; }
+  h1 { font-size: clamp(38px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -.035em; margin: 20px 0 18px; font-weight: 800; }
+  h1 em { font-style: normal; background: linear-gradient(90deg, #c2b2ff, #7fa8ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: 19px; color: var(--muted); max-width: 520px; margin: 0; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 12px; font-weight: 700; font-size: 16px; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+  .btn.primary { background: linear-gradient(135deg, #7b5cff, #4f46e5); box-shadow: 0 10px 30px rgba(91,76,240,.45); }
+  .btn.primary:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(91,76,240,.55); }
+  .btn.ghost { border: 1px solid var(--line); background: var(--card); }
+  .btn svg { width: 18px; height: 18px; }
+  .meta { margin-top: 18px; font-size: 13.5px; color: var(--muted); }
+  .shot { border-radius: 16px; box-shadow: 0 40px 90px rgba(0,0,0,.55); }
+
+  /* sections */
+  section { padding: 96px 0; border-top: 1px solid var(--line); }
+  .kicker { color: var(--soft); font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+  h2 { font-size: clamp(30px, 3.6vw, 42px); letter-spacing: -.03em; line-height: 1.12; margin: 10px 0 14px; font-weight: 800; }
+  .sub { color: var(--muted); font-size: 18px; max-width: 680px; margin: 0 0 44px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; }
+  .card img { width: 44px; height: 44px; margin-bottom: 18px; }
+  .card h3 { margin: 0 0 6px; font-size: 18px; letter-spacing: -.01em; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .wide { border-radius: 20px; border: 1px solid var(--line); }
+  ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 36px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 40px; }
+  ol.steps li { counter-increment: s; position: relative; padding-left: 44px; color: var(--muted); font-size: 15.5px; }
+  ol.steps li b { color: var(--fg); }
+  ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent2); color: #fff; font-weight: 800; font-size: 13px; }
+  code { font: 14px ui-monospace, Consolas, monospace; background: rgba(160,135,255,.15); color: #d9d0ff; padding: 2px 6px; border-radius: 6px; }
+  .note { margin-top: 28px; padding: 16px 20px; border-radius: 14px; background: rgba(123,92,255,.1); border: 1px solid rgba(160,135,255,.3); color: #e3dcff; font-size: 15px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 40px; }
+  .stat { text-align: center; padding: 22px; }
+  .stat b { display: block; font-size: 34px; letter-spacing: -.03em; background: linear-gradient(90deg, #c2b2ff, #7fa8ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat span { color: var(--muted); font-size: 14px; }
+  details { border: 1px solid var(--line); background: var(--card); border-radius: 14px; padding: 18px 22px; margin-bottom: 12px; }
+  summary { cursor: pointer; font-weight: 700; font-size: 16.5px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--soft); font-size: 22px; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--muted); margin: 12px 0 0; }
+  .final { text-align: center; background: radial-gradient(600px 300px at 50% 100%, rgba(123,92,255,.35), transparent 70%); }
+  .final .cta { justify-content: center; }
+  footer { border-top: 1px solid var(--line); padding: 34px 0 48px; color: var(--muted); font-size: 13.5px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .grid, .stats { grid-template-columns: 1fr 1fr; }
+    .links { display: none; }
+    ol.steps { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .grid, .stats { grid-template-columns: 1fr; }
+    nav .wrap { gap: 12px; }
+    .gh span { display: none; }
+    .hero { padding-top: 52px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#"><img src="icon.svg" alt=""><span data-en>Voice Transcripts</span><span data-fr>Transcriptions vocales</span></a>
+    <div class="links">
+      <a href="#features"><span data-en>Features</span><span data-fr>Fonctionnalités</span></a>
+      <a href="#install"><span data-en>Install</span><span data-fr>Installation</span></a>
+      <a href="#privacy"><span data-en>Privacy</span><span data-fr>Confidentialité</span></a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="lang" role="group" aria-label="Language"><button data-set="en">EN</button><button data-set="fr">FR</button></div>
+    <a class="gh" href="https://github.com/Raitofod/voice-transcripts-for-instagram"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38l-.01-1.49c-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub</span></a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="pill"><i></i><span data-en>Free · Open source · 99 languages</span><span data-fr>Gratuit · Open source · 99 langues</span></span>
+      <h1 data-en>Read your <em>voice messages</em> instead of listening.</h1>
+      <h1 data-fr>Lisez vos <em>messages vocaux</em> au lieu de les écouter.</h1>
+      <p class="lead" data-en>A browser extension that adds a <b>Transcribe</b> button under every Instagram voice message. Whisper turns it into text in seconds, right on your computer. Nothing is uploaded.</p>
+      <p class="lead" data-fr>Une extension de navigateur qui ajoute un bouton <b>Transcrire</b> sous chaque message vocal Instagram. Whisper le transforme en texte en quelques secondes, directement sur votre ordinateur. Rien n'est envoyé.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/Raitofod/voice-transcripts-for-instagram/releases/latest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-en>Download for free</span><span data-fr>Télécharger gratuitement</span></a>
+        <a class="btn ghost" href="#install"><span data-en>How to install</span><span data-fr>Comment l'installer</span></a>
+      </div>
+      <p class="meta" data-en>Chrome, Edge, Brave, Opera, Vivaldi, Arc · Windows, macOS, Linux</p>
+      <p class="meta" data-fr>Chrome, Edge, Brave, Opera, Vivaldi, Arc · Windows, macOS, Linux</p>
+    </div>
+    <img class="shot" src="demo.gif" width="1440" height="900" alt="Demo: clicking Transcribe under two Instagram voice messages shows a progress bar, then the English and Spanish transcripts.">
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="kicker" data-en>Features</div><div class="kicker" data-fr>Fonctionnalités</div>
+    <h2 data-en>Everything you need, nothing you don't.</h2>
+    <h2 data-fr>L'essentiel, sans superflu.</h2>
+    <p class="sub" data-en>Instagram's own transcription often fails with "Unable to transcribe" and isn't offered everywhere. This one works for every voice message.</p>
+    <p class="sub" data-fr>La transcription d'Instagram échoue souvent (« Unable to transcribe ») et n'est pas proposée partout. Celle-ci fonctionne pour tous les vocaux.</p>
+    <div class="grid">
+      <div class="card"><img src="icons/private.svg" alt=""><h3 data-en>100% private</h3><h3 data-fr>100 % confidentiel</h3><p data-en>Transcription runs on your computer. No server, no account, no tracking.</p><p data-fr>La transcription tourne sur votre ordinateur. Ni serveur, ni compte, ni pistage.</p></div>
+      <div class="card"><img src="icons/accurate.svg" alt=""><h3 data-en>Highly accurate</h3><h3 data-fr>Très précis</h3><p data-en>Whisper large-v3-turbo handles accents, slang and background noise.</p><p data-fr>Whisper large-v3-turbo gère les accents, le langage familier et le bruit de fond.</p></div>
+      <div class="card"><img src="icons/languages.svg" alt=""><h3 data-en>99 languages</h3><h3 data-fr>99 langues</h3><p data-en>The language is detected automatically for every message.</p><p data-fr>La langue est détectée automatiquement à chaque message.</p></div>
+      <div class="card"><img src="icons/fast.svg" alt=""><h3 data-en>GPU-accelerated</h3><h3 data-fr>Accéléré par le GPU</h3><p data-en>Uses your graphics card through WebGPU, or the processor otherwise.</p><p data-fr>Utilise votre carte graphique via WebGPU, sinon le processeur.</p></div>
+      <div class="card"><img src="icons/copy.svg" alt=""><h3 data-en>Copy in one click</h3><h3 data-fr>Copie en un clic</h3><p data-en>Paste a transcript into a note, an email or a translator.</p><p data-fr>Collez une transcription dans une note, un e-mail ou un traducteur.</p></div>
+      <div class="card"><img src="icons/models.svg" alt=""><h3 data-en>You're in control</h3><h3 data-fr>Vous gardez la main</h3><p data-en>Accurate or fast model, fixed language, compare mode, disk space manager.</p><p data-fr>Modèle précis ou rapide, langue fixe, mode comparaison, gestion de l'espace disque.</p></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>99</b><span data-en>spoken languages</span><span data-fr>langues parlées</span></div>
+      <div class="stat"><b>0</b><span data-en>bytes uploaded</span><span data-fr>octet envoyé</span></div>
+      <div class="stat"><b>8</b><span data-en>interface languages</span><span data-fr>langues d'interface</span></div>
+      <div class="stat"><b>$0</b><span data-en>forever, MIT license</span><span data-fr>pour toujours, licence MIT</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <div class="kicker" data-en>Install</div><div class="kicker" data-fr>Installation</div>
+    <h2 data-en>Up and running in 2 minutes.</h2>
+    <h2 data-fr>Prêt en 2 minutes.</h2>
+    <p class="sub" data-en>The extension isn't on the Chrome Web Store yet, so you load it yourself. It's quick.</p>
+    <p class="sub" data-fr>L'extension n'est pas encore sur le Chrome Web Store : vous la chargez vous-même. C'est rapide.</p>
+    <img class="wide" src="install.webp" width="2560" height="940" alt="Download the zip, load it in chrome://extensions, then click Transcribe on instagram.com" loading="lazy">
+    <ol class="steps" data-en>
+      <li><b>Download</b> <code>voice-transcripts-x.y.z.zip</code> from the <a href="https://github.com/Raitofod/voice-transcripts-for-instagram/releases/latest">latest release</a>.</li>
+      <li><b>Unzip it</b> into a folder you'll keep, for example <code>Documents/Voice Transcripts</code>.</li>
+      <li>Open <code>chrome://extensions</code> (<code>edge://extensions</code> in Edge).</li>
+      <li>Turn on <b>Developer mode</b>, then click <b>Load unpacked</b> and pick the folder.</li>
+      <li>Open a conversation on <b>instagram.com</b> and click <b>Transcribe</b> under a voice message.</li>
+      <li><i>Optional:</i> pin the extension from the 🧩 menu to reach its settings in one click.</li>
+    </ol>
+    <ol class="steps" data-fr>
+      <li><b>Téléchargez</b> <code>voice-transcripts-x.y.z.zip</code> depuis la <a href="https://github.com/Raitofod/voice-transcripts-for-instagram/releases/latest">dernière version</a>.</li>
+      <li><b>Décompressez-le</b> dans un dossier que vous garderez, par exemple <code>Documents/Voice Transcripts</code>.</li>
+      <li>Ouvrez <code>chrome://extensions</code> (<code>edge://extensions</code> dans Edge).</li>
+      <li>Activez le <b>Mode développeur</b>, puis cliquez sur <b>Charger l'extension non empaquetée</b> et choisissez le dossier.</li>
+      <li>Ouvrez une conversation sur <b>instagram.com</b> et cliquez sur <b>Transcrire</b> sous un vocal.</li>
+      <li><i>Facultatif :</i> épinglez l'extension depuis le menu 🧩 pour accéder aux réglages en un clic.</li>
+    </ol>
+    <div class="note" data-en><b>First use:</b> the speech model (about 700 MB) downloads once from Hugging Face. After that, transcriptions start right away and work offline.</div>
+    <div class="note" data-fr><b>Première utilisation :</b> le modèle vocal (environ 700 Mo) est téléchargé une seule fois depuis Hugging Face. Ensuite, les transcriptions démarrent immédiatement et fonctionnent hors ligne.</div>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="wrap">
+    <div class="kicker" data-en>Privacy</div><div class="kicker" data-fr>Confidentialité</div>
+    <h2 data-en>Your voice messages never leave your computer.</h2>
+    <h2 data-fr>Vos vocaux ne quittent jamais votre ordinateur.</h2>
+    <p class="sub" data-en>Only two downloads, both read-only: the voice message itself from Instagram, and the open-source model once. Nothing is ever sent, and transcripts aren't stored.</p>
+    <p class="sub" data-fr>Seulement deux téléchargements, en lecture seule : le vocal lui-même depuis Instagram, et le modèle open source une fois. Rien n'est jamais envoyé, et les transcriptions ne sont pas conservées.</p>
+    <img class="wide" src="privacy.webp" width="2560" height="1080" alt="Diagram of what stays on your computer" loading="lazy">
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker" data-en>Settings</div><div class="kicker" data-fr>Réglages</div>
+    <h2 data-en>Simple settings, in your language.</h2>
+    <h2 data-fr>Des réglages simples, dans votre langue.</h2>
+    <p class="sub" data-en>Choose the model, set the spoken language or compare both models. The panel follows your browser's language and theme.</p>
+    <p class="sub" data-fr>Choisissez le modèle, fixez la langue parlée ou comparez les deux modèles. Le panneau suit la langue et le thème de votre navigateur.</p>
+    <img class="wide" src="settings.webp" width="2560" height="1520" alt="The settings panel in French, English and Japanese" loading="lazy">
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="kicker">FAQ</div>
+    <h2 data-en>Questions? Answers.</h2>
+    <h2 data-fr>Des questions ? Des réponses.</h2>
+    <div data-en>
+      <details><summary>Is it really free?</summary><p>Yes. It's open-source software under the MIT license, with no paid plan, no ads and no account. It runs on your computer, so it costs nothing to run.</p></details>
+      <details><summary>Does it work on my phone?</summary><p>No. It's an extension for desktop browsers based on Chromium (Chrome, Edge, Brave, Opera, Vivaldi, Arc) on the instagram.com website. Firefox and Safari aren't supported.</p></details>
+      <details><summary>Can Instagram see that I use it?</summary><p>The extension doesn't post, like, send or automate anything, and makes no extra requests to Instagram. It reads the conversation already open in your browser and downloads the voice message like the player does. It's an unofficial tool, not affiliated with Instagram or Meta.</p></details>
+      <details><summary>How fast is it?</summary><p>On a mid-range laptop with integrated graphics, a 5-second message takes about 9 s and a 20-second one about 14 s. The first transcription is slower because the model is downloaded once.</p></details>
+      <details><summary>How much disk space does it use?</summary><p>About 700 MB for the Accurate model, or 250 MB for the Fast one. You can see and free this space from the settings.</p></details>
+    </div>
+    <div data-fr>
+      <details><summary>C'est vraiment gratuit ?</summary><p>Oui. C'est un logiciel open source sous licence MIT, sans offre payante, sans publicité et sans compte. Il tourne sur votre ordinateur, il ne coûte donc rien à faire fonctionner.</p></details>
+      <details><summary>Est-ce que ça marche sur téléphone ?</summary><p>Non. C'est une extension pour les navigateurs d'ordinateur basés sur Chromium (Chrome, Edge, Brave, Opera, Vivaldi, Arc), sur le site instagram.com. Firefox et Safari ne sont pas pris en charge.</p></details>
+      <details><summary>Instagram peut-il voir que je l'utilise ?</summary><p>L'extension ne publie, n'aime, n'envoie et n'automatise rien, et ne fait aucune requête supplémentaire à Instagram. Elle lit la conversation déjà ouverte et télécharge le vocal comme le lecteur. C'est un outil non officiel, sans lien avec Instagram ou Meta.</p></details>
+      <details><summary>Est-ce rapide ?</summary><p>Sur un portable de milieu de gamme avec puce graphique intégrée, un vocal de 5 secondes prend environ 9 s et un de 20 secondes environ 14 s. La première transcription est plus lente car le modèle est téléchargé une fois.</p></details>
+      <details><summary>Quelle place sur le disque ?</summary><p>Environ 700 Mo pour le modèle Précis, ou 250 Mo pour le Rapide. Vous pouvez voir et libérer cet espace depuis les réglages.</p></details>
+    </div>
+    <p class="meta"><a href="https://github.com/Raitofod/voice-transcripts-for-instagram#-faq" data-en>More answers on GitHub →</a><a href="https://github.com/Raitofod/voice-transcripts-for-instagram/blob/main/README.fr.md#-questions-fr%C3%A9quentes" data-fr>Plus de réponses sur GitHub →</a></p>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2 data-en>Stop pressing play. Start reading.</h2>
+    <h2 data-fr>Arrêtez d'écouter. Lisez.</h2>
+    <p class="sub" style="margin:0 auto 10px" data-en>Free, private and open source.</p>
+    <p class="sub" style="margin:0 auto 10px" data-fr>Gratuit, confidentiel et open source.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/Raitofod/voice-transcripts-for-instagram/releases/latest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-en>Download for free</span><span data-fr>Télécharger gratuitement</span></a>
+      <a class="btn ghost" href="https://github.com/Raitofod/voice-transcripts-for-instagram">⭐ <span data-en>Star on GitHub</span><span data-fr>Mettre une étoile</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Raitofod · <a href="https://github.com/Raitofod/voice-transcripts-for-instagram/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Raitofod/voice-transcripts-for-instagram/blob/main/PRIVACY.md"><span data-en>Privacy policy</span><span data-fr>Confidentialité</span></a></span>
+    <span data-en>Not affiliated with Instagram or Meta Platforms, Inc.</span>
+    <span data-fr>Sans lien avec Instagram ou Meta Platforms, Inc.</span>
+  </div>
+</footer>
+
+<script>
+  (() => {
+    const set = (l) => {
+      document.documentElement.lang = l;
+      document.querySelectorAll(".lang button").forEach((b) => b.classList.toggle("on", b.dataset.set === l));
+      try { localStorage.setItem("lang", l); } catch (_) {}
+    };
+    let saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (_) {}
+    const q = new URLSearchParams(location.search).get("lang");
+    set(q || saved || ((navigator.language || "en").toLowerCase().startsWith("fr") ? "fr" : "en"));
+    document.querySelectorAll(".lang button").forEach((b) => b.addEventListener("click", () => set(b.dataset.set)));
+  })();
+</script>
+</body>
+</html>

@@ -11,6 +11,12 @@
   "btnRetry": {
     "message": "Riprova"
   },
+  "btnCopy": {
+    "message": "Copia"
+  },
+  "copied": {
+    "message": "Copiato"
+  },
   "progressWaiting": {
     "message": "In attesa…"
   },

@@ -1,0 +1,54 @@
+name: Bug report
+description: Something doesn't work as expected.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem!
+        **Please don't paste transcripts or screenshots of private conversations.**
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+      placeholder: I clicked Transcribe under a voice message and…
+    validations:
+      required: true
+  - type: input
+    id: message
+    attributes:
+      label: Message shown under the voice message
+      description: For example "Transcription failed: …" or "Waiting…". Leave empty if nothing was shown.
+  - type: input
+    id: version
+    attributes:
+      label: Extension version
+      description: Shown at the bottom of the settings panel (for example v1.0.3).
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 142, Edge 141, Brave 1.84…
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options: [Windows, macOS, Linux, ChromeOS, Other]
+    validations:
+      required: true
+  - type: dropdown
+    id: model
+    attributes:
+      label: Model
+      options: [Accurate, Fast, Compare mode]
+  - type: textarea
+    id: errors
+    attributes:
+      label: Errors in chrome://extensions (optional)
+      description: Click **Errors** on the extension's card and paste what you see.
+      render: text

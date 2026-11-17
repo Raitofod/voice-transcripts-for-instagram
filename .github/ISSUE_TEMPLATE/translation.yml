@@ -1,0 +1,23 @@
+name: Translation
+description: Add a new interface language or fix a translation.
+labels: [translation]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The interface strings live in `extension/_locales/<locale>/messages.json`.
+        The easiest way is to open a pull request directly: see [CONTRIBUTING.md](https://github.com/Raitofod/voice-transcripts-for-instagram/blob/main/CONTRIBUTING.md).
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      placeholder: Korean (ko), Polish (pl)…
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What should change?
+      description: The strings to add or fix, or a link to your translated messages.json.
+    validations:
+      required: true

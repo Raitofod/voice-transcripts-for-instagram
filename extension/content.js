@@ -63,6 +63,43 @@ function transcribe(id, url, model) {
 const css = (el, style) => { el.style.cssText = style; return el; };
 const div = (style) => css(document.createElement("div"), style);
 
+// Small stroked icon (24x24 path, drawn in the text colour).
+function icon(d, size = 14) {
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("width", size);
+  svg.setAttribute("height", size);
+  svg.setAttribute("aria-hidden", "true");
+  svg.style.cssText = "flex:none;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;";
+  const path = document.createElementNS(NS, "path");
+  path.setAttribute("d", d);
+  svg.appendChild(path);
+  return svg;
+}
+const ICON_TRANSCRIBE = "M3 10v4M6.5 7v10M10 9.5v5M14 8h7M14 12h5M14 16h6"; // waveform turning into lines of text
+const ICON_COPY = "M9 9h10v11H9zM5 15H4V4h11v1";
+const ICON_DONE = "M5 12.5l4.5 4.5L19 7.5";
+
+// "Copy" link shown next to a finished transcript.
+function copyButton(text) {
+  const b = document.createElement("button");
+  b.type = "button";
+  css(b, "all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:4px;margin-left:10px;font-weight:600;");
+  const label = document.createTextNode(t("btnCopy"));
+  b.append(icon(ICON_COPY, 12), label);
+  b.onmouseenter = () => (b.style.textDecoration = "underline");
+  b.onmouseleave = () => (b.style.textDecoration = "none");
+  b.addEventListener("click", async (ev) => {
+    ev.stopPropagation();
+    try { await navigator.clipboard.writeText(text); } catch (_) { return; }
+    b.firstChild.replaceWith(icon(ICON_DONE, 12));
+    label.textContent = t("copied");
+    setTimeout(() => { b.firstChild.replaceWith(icon(ICON_COPY, 12)); label.textContent = t("btnCopy"); }, 1500);
+  });
+  return b;
+}
+
 // One result block: optional title, text, progress bar, muted footer.
 // Once its job starts (not while queued), the footer counts the elapsed seconds. A remaining-time estimate
 // is never reliable here: speed depends on the hardware, the speech and Whisper's windows.
@@ -108,7 +145,7 @@ function makeSection(title) {
         fill.style.width = Math.max(0, Math.min(100, pct)) + "%";
       }
     },
-    finish(text, meta, isError) {
+    finish(text, meta, isError, copyable) {
       stopSweep();
       clearInterval(clock);
       track.style.display = "none";
@@ -116,6 +153,7 @@ function makeSection(title) {
       out.style.fontSize = isError ? "13px" : "";
       out.textContent = text;
       foot.textContent = meta || "";
+      if (copyable) foot.appendChild(copyButton(text));
       foot.hidden = !meta;
     },
   };
@@ -146,7 +184,7 @@ function mount(svg, mountedId) {
   btn.textContent = t("btnTranscribe");
   css(btn, "all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;" +
     "font-size:12px;font-weight:600;color:inherit;background:rgba(128,128,128,.18);");
-  btn.prepend(Object.assign(document.createElement("span"), { textContent: "✎", ariaHidden: "true" }));
+  btn.prepend(icon(ICON_TRANSCRIBE));
   btn.onmouseenter = () => (btn.style.background = "rgba(128,128,128,.3)");
   btn.onmouseleave = () => (btn.style.background = "rgba(128,128,128,.18)");
   const results = div("");
@@ -184,7 +222,7 @@ function mount(svg, mountedId) {
       try {
         if (!url) throw new Error("ERR_AUDIO_MISSING");
         const res = await transcribe(id, url, models[i]);
-        s.finish(res.text || t("noSpeech"), `${langName(res.language)} · ${t("seconds", s.elapsed())}`);
+        s.finish(res.text || t("noSpeech"), `${langName(res.language)} · ${t("seconds", s.elapsed())}`, false, !!res.text);
       } catch (err) {
         s.finish(errorText(err.message), "", true);
         failed = true;
