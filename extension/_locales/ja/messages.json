@@ -1,0 +1,104 @@
+{
+  "extName": {
+    "message": "Instagram ボイスメッセージ文字起こし"
+  },
+  "extDescription": {
+    "message": "Instagram のボイスメッセージをテキストで読めます。Whisper によりお使いの端末上で文字起こしするため、音声がブラウザの外に送られることはありません。"
+  },
+  "btnTranscribe": {
+    "message": "文字起こし"
+  },
+  "btnRetry": {
+    "message": "再試行"
+  },
+  "progressWaiting": {
+    "message": "待機中…"
+  },
+  "progressPrepare": {
+    "message": "音声を準備中…"
+  },
+  "progressLoad": {
+    "message": "「$1」モデルを読み込み中…"
+  },
+  "progressLoadPct": {
+    "message": "「$1」モデルを読み込み中: $2%"
+  },
+  "progressDetect": {
+    "message": "言語を検出中…"
+  },
+  "progressTranscribe": {
+    "message": "文字起こし中 $1%"
+  },
+  "progressTranscribeEta": {
+    "message": "文字起こし中 $1% · 残り約 $2 秒"
+  },
+  "noSpeech": {
+    "message": "（音声が検出されませんでした）"
+  },
+  "seconds": {
+    "message": "$1 秒"
+  },
+  "errAudioMissing": {
+    "message": "音声が見つかりません。ページを再読み込み（F5）して会話を開き直してください。"
+  },
+  "errAudioHttp": {
+    "message": "音声をダウンロードできませんでした（HTTP $1）。ページを再読み込みしてもう一度お試しください。"
+  },
+  "errGeneric": {
+    "message": "文字起こしに失敗しました: $1"
+  },
+  "model_accurate": {
+    "message": "高精度"
+  },
+  "model_accurate_desc": {
+    "message": "Whisper large-v3-turbo · 最高品質 · おすすめ"
+  },
+  "model_fast": {
+    "message": "高速"
+  },
+  "model_fast_desc": {
+    "message": "Whisper small · 約3倍高速 · 性能の低いPC向け"
+  },
+  "popupSubtitle": {
+    "message": "文字起こしはすべてお使いの端末上で行われ、何もアップロードされません。"
+  },
+  "sectionModel": {
+    "message": "モデル"
+  },
+  "sectionLanguage": {
+    "message": "話されている言語"
+  },
+  "languageAuto": {
+    "message": "自動検出"
+  },
+  "languageHint": {
+    "message": "言語を指定すると検出が省略され、短いメッセージでの誤りを防げます。"
+  },
+  "statusDownloaded": {
+    "message": "ダウンロード済み · $1"
+  },
+  "statusNotDownloaded": {
+    "message": "未ダウンロード · 初回使用時に約 $1"
+  },
+  "btnDelete": {
+    "message": "削除"
+  },
+  "confirmDelete": {
+    "message": "ダウンロード済みの「$1」モデルを削除しますか？使用時に再ダウンロードされます。"
+  },
+  "noteDeleted": {
+    "message": "「$1」モデルを削除しました。"
+  },
+  "noteSaved": {
+    "message": "保存しました。次回の文字起こしから適用されます。"
+  },
+  "compareTitle": {
+    "message": "モデルを比較"
+  },
+  "compareDesc": {
+    "message": "各メッセージの下に両モデルの文字起こしと所要時間を表示します。時間がかかり、不足しているモデルをダウンロードします。"
+  },
+  "footer": {
+    "message": "オープンソース · Instagram および Meta とは無関係です"
+  }
+}

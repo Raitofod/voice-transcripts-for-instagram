@@ -1,0 +1,104 @@
+{
+  "extName": {
+    "message": "Transcrições de voz para Instagram"
+  },
+  "extDescription": {
+    "message": "Leia as mensagens de voz do Instagram como texto. Transcrição privada no seu dispositivo com Whisper: nenhum áudio sai do seu navegador."
+  },
+  "btnTranscribe": {
+    "message": "Transcrever"
+  },
+  "btnRetry": {
+    "message": "Tentar novamente"
+  },
+  "progressWaiting": {
+    "message": "Aguardando…"
+  },
+  "progressPrepare": {
+    "message": "Preparando o áudio…"
+  },
+  "progressLoad": {
+    "message": "Carregando o modelo “$1”…"
+  },
+  "progressLoadPct": {
+    "message": "Carregando o modelo “$1”: $2%"
+  },
+  "progressDetect": {
+    "message": "Detectando o idioma…"
+  },
+  "progressTranscribe": {
+    "message": "Transcrevendo $1%"
+  },
+  "progressTranscribeEta": {
+    "message": "Transcrevendo $1% · ~$2 s restantes"
+  },
+  "noSpeech": {
+    "message": "(nenhuma fala detectada)"
+  },
+  "seconds": {
+    "message": "$1 s"
+  },
+  "errAudioMissing": {
+    "message": "Áudio não encontrado. Recarregue a página (F5) e abra a conversa novamente."
+  },
+  "errAudioHttp": {
+    "message": "Não foi possível baixar o áudio (HTTP $1). Recarregue a página e tente novamente."
+  },
+  "errGeneric": {
+    "message": "Falha na transcrição: $1"
+  },
+  "model_accurate": {
+    "message": "Preciso"
+  },
+  "model_accurate_desc": {
+    "message": "Whisper large-v3-turbo · melhor qualidade · recomendado"
+  },
+  "model_fast": {
+    "message": "Rápido"
+  },
+  "model_fast_desc": {
+    "message": "Whisper small · cerca de 3× mais rápido · para computadores modestos"
+  },
+  "popupSubtitle": {
+    "message": "A transcrição acontece inteiramente no seu dispositivo. Nada é enviado."
+  },
+  "sectionModel": {
+    "message": "Modelo"
+  },
+  "sectionLanguage": {
+    "message": "Idioma falado"
+  },
+  "languageAuto": {
+    "message": "Detectar automaticamente"
+  },
+  "languageHint": {
+    "message": "Escolher o idioma pula a detecção e evita erros em mensagens muito curtas."
+  },
+  "statusDownloaded": {
+    "message": "Baixado · $1"
+  },
+  "statusNotDownloaded": {
+    "message": "Não baixado · ~$1 no primeiro uso"
+  },
+  "btnDelete": {
+    "message": "Excluir"
+  },
+  "confirmDelete": {
+    "message": "Excluir o modelo “$1” baixado? Ele será baixado novamente se você usá-lo."
+  },
+  "noteDeleted": {
+    "message": "Modelo “$1” excluído."
+  },
+  "noteSaved": {
+    "message": "Salvo. Vale para a próxima transcrição."
+  },
+  "compareTitle": {
+    "message": "Comparar modelos"
+  },
+  "compareDesc": {
+    "message": "Mostra sob cada mensagem as transcrições dos dois modelos, com o tempo. Mais lento; baixa o modelo que faltar."
+  },
+  "footer": {
+    "message": "Código aberto · Sem vínculo com Instagram ou Meta"
+  }
+}

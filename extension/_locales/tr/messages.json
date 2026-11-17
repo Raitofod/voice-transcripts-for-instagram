@@ -1,0 +1,104 @@
+{
+  "extName": {
+    "message": "Instagram için Sesli Mesaj Dökümü"
+  },
+  "extDescription": {
+    "message": "Instagram sesli mesajlarını metin olarak okuyun. Whisper ile cihazınızda gizlice yazıya dökülür; hiçbir ses tarayıcınızdan çıkmaz."
+  },
+  "btnTranscribe": {
+    "message": "Yazıya dök"
+  },
+  "btnRetry": {
+    "message": "Tekrar dene"
+  },
+  "progressWaiting": {
+    "message": "Bekleniyor…"
+  },
+  "progressPrepare": {
+    "message": "Ses hazırlanıyor…"
+  },
+  "progressLoad": {
+    "message": "$1 modeli yükleniyor…"
+  },
+  "progressLoadPct": {
+    "message": "$1 modeli yükleniyor: %$2"
+  },
+  "progressDetect": {
+    "message": "Dil algılanıyor…"
+  },
+  "progressTranscribe": {
+    "message": "Yazıya dökülüyor %$1"
+  },
+  "progressTranscribeEta": {
+    "message": "Yazıya dökülüyor %$1 · ~$2 sn kaldı"
+  },
+  "noSpeech": {
+    "message": "(konuşma algılanmadı)"
+  },
+  "seconds": {
+    "message": "$1 sn"
+  },
+  "errAudioMissing": {
+    "message": "Ses bulunamadı. Sayfayı yenileyin (F5) ve sohbeti yeniden açın."
+  },
+  "errAudioHttp": {
+    "message": "Ses indirilemedi (HTTP $1). Sayfayı yenileyip tekrar deneyin."
+  },
+  "errGeneric": {
+    "message": "Yazıya dökme başarısız: $1"
+  },
+  "model_accurate": {
+    "message": "Hassas"
+  },
+  "model_accurate_desc": {
+    "message": "Whisper large-v3-turbo · en iyi kalite · önerilen"
+  },
+  "model_fast": {
+    "message": "Hızlı"
+  },
+  "model_fast_desc": {
+    "message": "Whisper small · yaklaşık 3× daha hızlı · yavaş bilgisayarlar için"
+  },
+  "popupSubtitle": {
+    "message": "Yazıya dökme tamamen cihazınızda yapılır. Hiçbir şey yüklenmez."
+  },
+  "sectionModel": {
+    "message": "Model"
+  },
+  "sectionLanguage": {
+    "message": "Konuşulan dil"
+  },
+  "languageAuto": {
+    "message": "Otomatik algıla"
+  },
+  "languageHint": {
+    "message": "Dili seçmek algılama adımını atlar ve çok kısa mesajlardaki hataları önler."
+  },
+  "statusDownloaded": {
+    "message": "İndirildi · $1"
+  },
+  "statusNotDownloaded": {
+    "message": "İndirilmedi · ilk kullanımda ~$1"
+  },
+  "btnDelete": {
+    "message": "Sil"
+  },
+  "confirmDelete": {
+    "message": "İndirilen $1 modeli silinsin mi? Kullanırsanız yeniden indirilir."
+  },
+  "noteDeleted": {
+    "message": "$1 modeli silindi."
+  },
+  "noteSaved": {
+    "message": "Kaydedildi. Bir sonraki dökümde geçerli olur."
+  },
+  "compareTitle": {
+    "message": "Modelleri karşılaştır"
+  },
+  "compareDesc": {
+    "message": "Her mesajın altında iki modelin dökümünü ve süresini gösterir. Daha yavaştır; eksik modeli indirir."
+  },
+  "footer": {
+    "message": "Açık kaynak · Instagram veya Meta ile bağlantılı değildir"
+  }
+}

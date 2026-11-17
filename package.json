@@ -1,0 +1,15 @@
+{
+  "name": "voice-transcripts-for-instagram",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Browser extension that transcribes Instagram voice messages locally with Whisper.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "vendor": "node scripts/update-vendor.mjs",
+    "zip": "node scripts/zip.mjs"
+  },
+  "devDependencies": {
+    "@huggingface/transformers": "4.3.2"
+  }
+}

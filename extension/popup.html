@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title data-i18n="extName"></title>
+<style>
+  :root {
+    --bg:#ffffff; --fg:#16161d; --muted:#6c6c78; --line:#e4e4ea; --card:#f7f7fa;
+    --accent:#5b4cf0; --accent-soft:rgba(91,76,240,.10); --danger:#c62828; --ok:#1f8a4c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#16161b; --fg:#ececf1; --muted:#9a9aa8; --line:#2c2c35; --card:#1e1e25;
+      --accent:#8d82ff; --accent-soft:rgba(141,130,255,.14); --danger:#ff7b72; --ok:#4cc38a; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; width:360px; background:var(--bg); color:var(--fg); font:13px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  header { display:flex; gap:12px; align-items:center; padding:16px 16px 12px; border-bottom:1px solid var(--line); }
+  header img { width:36px; height:36px; flex:none; }
+  header h1 { font-size:14px; margin:0; font-weight:650; }
+  header p { margin:2px 0 0; color:var(--muted); font-size:12px; }
+  main { padding:4px 16px 8px; }
+  h2 { font-size:11px; font-weight:650; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:14px 0 8px; }
+
+  .card { display:block; position:relative; padding:10px 12px 10px 38px; margin-bottom:8px; border:1px solid var(--line);
+    border-radius:10px; background:var(--card); cursor:pointer; transition:border-color .15s, background .15s; }
+  .card:hover { border-color:var(--muted); }
+  .card.on { border-color:var(--accent); background:var(--accent-soft); }
+  .card input[type=radio] { position:absolute; left:12px; top:12px; margin:0; accent-color:var(--accent); }
+  .card .name { font-weight:600; }
+  .card .desc { color:var(--muted); font-size:12px; }
+  .status { margin-top:6px; display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:12px; color:var(--muted); }
+  .status.ok span::before { content:"●"; color:var(--ok); margin-right:6px; font-size:9px; vertical-align:1px; }
+  .status button { font:inherit; padding:2px 10px; border-radius:6px; border:1px solid var(--danger); background:transparent; color:var(--danger); cursor:pointer; }
+  .status button:hover { background:var(--danger); color:#fff; }
+
+  select { width:100%; font:inherit; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:7px 8px; }
+  select:focus { outline:2px solid var(--accent); outline-offset:-1px; }
+  .hint { color:var(--muted); font-size:12px; margin:6px 0 0; }
+
+  .toggle { display:flex; gap:12px; align-items:flex-start; cursor:pointer; }
+  .toggle .text { flex:1; }
+  .toggle .desc { color:var(--muted); font-size:12px; }
+  .switch { position:relative; flex:none; width:34px; height:20px; margin-top:1px; }
+  .switch input { position:absolute; opacity:0; inset:0; margin:0; cursor:pointer; }
+  .switch span { position:absolute; inset:0; border-radius:999px; background:var(--line); transition:background .15s; pointer-events:none; }
+  .switch span::after { content:""; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.3); transition:transform .15s; }
+  .switch input:checked + span { background:var(--accent); }
+  .switch input:checked + span::after { transform:translateX(14px); }
+  .switch input:focus-visible + span { outline:2px solid var(--accent); outline-offset:2px; }
+
+  .note { min-height:18px; margin:10px 0 0; color:var(--accent); font-size:12px; }
+  footer { padding:10px 16px 14px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; display:flex; justify-content:space-between; }
+  footer a { color:inherit; }
+</style>
+</head>
+<body>
+  <header>
+    <img src="icons/icon-128.png" alt="">
+    <div>
+      <h1 data-i18n="extName"></h1>
+      <p data-i18n="popupSubtitle"></p>
+    </div>
+  </header>
+  <main>
+    <h2 data-i18n="sectionModel"></h2>
+    <div id="models"></div>
+
+    <h2 data-i18n="sectionLanguage"></h2>
+    <select id="language"></select>
+    <p class="hint" data-i18n="languageHint"></p>
+
+    <h2 data-i18n="compareTitle"></h2>
+    <label class="toggle">
+      <span class="text desc" data-i18n="compareDesc"></span>
+      <span class="switch"><input type="checkbox" id="compare"><span></span></span>
+    </label>
+
+    <p class="note" id="note" role="status"></p>
+  </main>
+  <footer>
+    <span data-i18n="footer"></span>
+    <span id="version"></span>
+  </footer>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

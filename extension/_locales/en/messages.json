@@ -1,0 +1,104 @@
+{
+  "extName": {
+    "message": "Voice Transcripts for Instagram"
+  },
+  "extDescription": {
+    "message": "Read Instagram voice messages as text. Transcribed privately on your device with Whisper — no audio ever leaves your browser."
+  },
+  "btnTranscribe": {
+    "message": "Transcribe"
+  },
+  "btnRetry": {
+    "message": "Try again"
+  },
+  "progressWaiting": {
+    "message": "Waiting…"
+  },
+  "progressPrepare": {
+    "message": "Preparing audio…"
+  },
+  "progressLoad": {
+    "message": "Loading the $1 model…"
+  },
+  "progressLoadPct": {
+    "message": "Loading the $1 model: $2%"
+  },
+  "progressDetect": {
+    "message": "Detecting language…"
+  },
+  "progressTranscribe": {
+    "message": "Transcribing $1%"
+  },
+  "progressTranscribeEta": {
+    "message": "Transcribing $1% · ~$2 s left"
+  },
+  "noSpeech": {
+    "message": "(no speech detected)"
+  },
+  "seconds": {
+    "message": "$1 s"
+  },
+  "errAudioMissing": {
+    "message": "Audio not found. Reload the page (F5) and open the conversation again."
+  },
+  "errAudioHttp": {
+    "message": "Could not download the audio (HTTP $1). Reload the page and try again."
+  },
+  "errGeneric": {
+    "message": "Transcription failed: $1"
+  },
+  "model_accurate": {
+    "message": "Accurate"
+  },
+  "model_accurate_desc": {
+    "message": "Whisper large-v3-turbo · best quality · recommended"
+  },
+  "model_fast": {
+    "message": "Fast"
+  },
+  "model_fast_desc": {
+    "message": "Whisper small · about 3× faster · for slower computers"
+  },
+  "popupSubtitle": {
+    "message": "Speech-to-text runs entirely on your device. Nothing is uploaded."
+  },
+  "sectionModel": {
+    "message": "Model"
+  },
+  "sectionLanguage": {
+    "message": "Spoken language"
+  },
+  "languageAuto": {
+    "message": "Detect automatically"
+  },
+  "languageHint": {
+    "message": "Choosing the language skips detection and avoids mistakes on very short messages."
+  },
+  "statusDownloaded": {
+    "message": "Downloaded · $1"
+  },
+  "statusNotDownloaded": {
+    "message": "Not downloaded · ~$1 on first use"
+  },
+  "btnDelete": {
+    "message": "Delete"
+  },
+  "confirmDelete": {
+    "message": "Delete the downloaded $1 model? It will be downloaded again if you use it."
+  },
+  "noteDeleted": {
+    "message": "$1 model deleted."
+  },
+  "noteSaved": {
+    "message": "Saved. Applies to the next transcription."
+  },
+  "compareTitle": {
+    "message": "Compare models"
+  },
+  "compareDesc": {
+    "message": "Shows both models' transcripts under each message, with their timing. Slower; downloads the missing model."
+  },
+  "footer": {
+    "message": "Open source · Not affiliated with Instagram or Meta"
+  }
+}

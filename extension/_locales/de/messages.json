@@ -1,0 +1,104 @@
+{
+  "extName": {
+    "message": "Sprachnachrichten-Transkription für Instagram"
+  },
+  "extDescription": {
+    "message": "Lies Instagram-Sprachnachrichten als Text. Privat auf deinem Gerät mit Whisper transkribiert – kein Audio verlässt deinen Browser."
+  },
+  "btnTranscribe": {
+    "message": "Transkribieren"
+  },
+  "btnRetry": {
+    "message": "Erneut versuchen"
+  },
+  "progressWaiting": {
+    "message": "Warten…"
+  },
+  "progressPrepare": {
+    "message": "Audio wird vorbereitet…"
+  },
+  "progressLoad": {
+    "message": "Modell „$1“ wird geladen…"
+  },
+  "progressLoadPct": {
+    "message": "Modell „$1“ wird geladen: $2 %"
+  },
+  "progressDetect": {
+    "message": "Sprache wird erkannt…"
+  },
+  "progressTranscribe": {
+    "message": "Transkription $1 %"
+  },
+  "progressTranscribeEta": {
+    "message": "Transkription $1 % · noch ~$2 s"
+  },
+  "noSpeech": {
+    "message": "(keine Sprache erkannt)"
+  },
+  "seconds": {
+    "message": "$1 s"
+  },
+  "errAudioMissing": {
+    "message": "Audio nicht gefunden. Lade die Seite neu (F5) und öffne die Unterhaltung erneut."
+  },
+  "errAudioHttp": {
+    "message": "Audio konnte nicht geladen werden (HTTP $1). Lade die Seite neu und versuche es erneut."
+  },
+  "errGeneric": {
+    "message": "Transkription fehlgeschlagen: $1"
+  },
+  "model_accurate": {
+    "message": "Genau"
+  },
+  "model_accurate_desc": {
+    "message": "Whisper large-v3-turbo · beste Qualität · empfohlen"
+  },
+  "model_fast": {
+    "message": "Schnell"
+  },
+  "model_fast_desc": {
+    "message": "Whisper small · etwa 3× schneller · für langsamere Computer"
+  },
+  "popupSubtitle": {
+    "message": "Die Transkription läuft vollständig auf deinem Gerät. Nichts wird hochgeladen."
+  },
+  "sectionModel": {
+    "message": "Modell"
+  },
+  "sectionLanguage": {
+    "message": "Gesprochene Sprache"
+  },
+  "languageAuto": {
+    "message": "Automatisch erkennen"
+  },
+  "languageHint": {
+    "message": "Eine feste Sprache überspringt die Erkennung und vermeidet Fehler bei sehr kurzen Nachrichten."
+  },
+  "statusDownloaded": {
+    "message": "Heruntergeladen · $1"
+  },
+  "statusNotDownloaded": {
+    "message": "Nicht heruntergeladen · ~$1 bei der ersten Nutzung"
+  },
+  "btnDelete": {
+    "message": "Löschen"
+  },
+  "confirmDelete": {
+    "message": "Das heruntergeladene Modell „$1“ löschen? Es wird bei Nutzung erneut heruntergeladen."
+  },
+  "noteDeleted": {
+    "message": "Modell „$1“ gelöscht."
+  },
+  "noteSaved": {
+    "message": "Gespeichert. Gilt ab der nächsten Transkription."
+  },
+  "compareTitle": {
+    "message": "Modelle vergleichen"
+  },
+  "compareDesc": {
+    "message": "Zeigt unter jeder Nachricht die Transkripte beider Modelle samt Dauer. Langsamer; lädt das fehlende Modell herunter."
+  },
+  "footer": {
+    "message": "Open Source · Nicht mit Instagram oder Meta verbunden"
+  }
+}
