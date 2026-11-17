@@ -5,21 +5,22 @@ const progressListeners = new Map(); // job id -> fn(progress)
 const langNames = new Intl.DisplayNames([chrome.i18n.getUILanguage()], { type: "language" });
 const langName = (code) => { try { return langNames.of(code === "jw" ? "jv" : code); } catch (_) { return code; } };
 
-const resolvers = new Map(); // attachment_fbid -> resolve(url)
+const resolvers = new Map(); // bubble key -> resolve(url)
 window.addEventListener("message", (e) => {
   if (e.source !== window || !e.data) return;
   if (e.data.__igvt === "audio") audioUrls.set(e.data.id, e.data.url);
-  if (e.data.__igvt === "resolved" && resolvers.has(e.data.id)) resolvers.get(e.data.id)(e.data.url);
+  if (e.data.__igvt === "resolved" && resolvers.has(e.data.key)) resolvers.get(e.data.key)(e.data.url);
 });
 
-// Ask hook.js (page world) for the audio URL: it reads it from the bubble's React data, which also covers
-// voice messages received live. Falls back to the URL seen in Instagram's API responses.
-function audioUrl(fbid) {
+// Ask hook.js (page world) for the audio URL of the bubble whose <svg> carries data-igvt-key=key. It reads
+// it from the bubble's React data, which also covers voice messages received live (their attachment id is
+// still "null" in the page). Falls back to the URL seen in Instagram's API responses.
+function audioUrl(key, fbid) {
   return new Promise((resolve) => {
-    const done = (url) => { resolvers.delete(fbid); clearTimeout(timer); resolve(url || audioUrls.get(fbid) || null); };
+    const done = (url) => { resolvers.delete(key); clearTimeout(timer); resolve(url || audioUrls.get(fbid) || null); };
     const timer = setTimeout(() => done(null), 1000);
-    resolvers.set(fbid, done);
-    window.postMessage({ __igvt: "resolve", id: fbid }, "*");
+    resolvers.set(key, done);
+    window.postMessage({ __igvt: "resolve", key, id: fbid }, "*");
   });
 }
 
@@ -107,10 +108,12 @@ function makeSection(title) {
   };
 }
 
-function mount(svg, fbid) {
+let bubbleCount = 0;
+function mount(svg, mountedId) {
   const playerRow = svg.parentElement;
   const holder = playerRow && playerRow.parentElement;
-  if (!holder) return;
+  if (!holder || holder.dataset.igvt) return; // already has our control (the waveform was re-rendered)
+  holder.dataset.igvt = "1";
 
   // Hide Instagram's own transcription control (it fails with "Unable to transcribe"); it sits right after the player.
   const native = playerRow.nextElementSibling;
@@ -131,7 +134,13 @@ function mount(svg, fbid) {
 
   btn.addEventListener("click", async (ev) => {
     ev.stopPropagation();
-    const url = await audioUrl(fbid);
+    // Instagram may have re-rendered the waveform since mounting (e.g. once a live message gets its id).
+    const cp = holder.querySelector('clipPath[id^="waveform-clip-path-"]');
+    const current = (cp && cp.closest("svg")) || svg;
+    const fbid = cp ? cp.id.slice("waveform-clip-path-".length) : mountedId;
+    const key = "b" + ++bubbleCount;
+    current.dataset.igvtKey = key;
+    const url = await audioUrl(key, fbid);
     btn.style.display = "none";
     results.textContent = "";
 
@@ -146,7 +155,7 @@ function mount(svg, fbid) {
 
     let failed = false;
     for (let i = 0; i < models.length; i++) {
-      const id = `${fbid}#${models[i] || "default"}`;
+      const id = `${key}#${models[i] || "default"}`;
       const s = sections[i];
       const t0 = Date.now();
       progressListeners.set(id, (p) => s.progress(progressText(p), p.pct));

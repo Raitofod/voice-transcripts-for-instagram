@@ -25,17 +25,18 @@
 
   // Voice messages that arrive in real time (over Instagram's websocket) never go through fetch/XHR.
   // Their data is still in the React tree: the bubble's Relay snapshot holds audio_attachments[] with
-  // attachment_fbid + attachment_cdn_url. Walk up from the waveform's DOM node to find it.
-  function findInReact(id) {
-    const cp = document.getElementById("waveform-clip-path-" + id);
-    const svg = cp && cp.closest("svg");
+  // attachment_cdn_url (+ attachment_fbid, which is still null for a message that just arrived).
+  // Walk up from the bubble's waveform <svg> (tagged by content.js) and take the nearest match.
+  function findInReact(svgKey, id) {
+    const svg = document.querySelector(`svg[data-igvt-key="${CSS.escape(svgKey)}"]`);
     const key = svg && Object.keys(svg).find((k) => k.startsWith("__reactFiber$"));
     if (!key) return null;
+    const anyId = !/^\d+$/.test(id);
     const seen = new WeakSet();
     const search = (node, depth) => {
       if (!node || typeof node !== "object" || depth > 8 || seen.has(node)) return null;
       seen.add(node);
-      if (String(node.attachment_fbid) === id && typeof node.attachment_cdn_url === "string") return node.attachment_cdn_url;
+      if (typeof node.attachment_cdn_url === "string" && (anyId || String(node.attachment_fbid) === id)) return node.attachment_cdn_url;
       for (const k in node) {
         if (k === "children" || k === "_owner" || k.startsWith("__react")) continue;
         let v;
@@ -56,10 +57,10 @@
 
   window.addEventListener("message", (e) => {
     if (e.source !== window || !e.data || e.data.__igvt !== "resolve") return;
-    const id = String(e.data.id);
+    const { key, id } = e.data;
     let url = null;
-    try { url = findInReact(id); } catch (_) {}
-    window.postMessage({ __igvt: "resolved", id, url: url || found.get(id) || null }, "*");
+    try { url = findInReact(String(key), String(id)); } catch (_) {}
+    window.postMessage({ __igvt: "resolved", key, url: url || found.get(String(id)) || null }, "*");
   });
 
   // Only API responses can carry thread data; skip media, scripts and streams.
