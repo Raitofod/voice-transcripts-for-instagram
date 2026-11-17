@@ -32,9 +32,6 @@
   "progressTranscribe": {
     "message": "Transcription $1 %"
   },
-  "progressTranscribeEta": {
-    "message": "Transcription $1 % · ~$2 s restantes"
-  },
   "noSpeech": {
     "message": "(aucune parole détectée)"
   },

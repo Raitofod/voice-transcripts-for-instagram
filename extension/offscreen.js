@@ -107,7 +107,6 @@ function reuseEncoderOnce(model, encoder_outputs) {
 // so between them we estimate from the number of tokens generated.
 function progressStreamer(tsBegin, durationS) {
   const hop = CHUNK_S - 2 * STRIDE_S;
-  const t0 = performance.now();
   let chunk = 0, steps = 0, tsPos = 0, lastPct = 0;
   return {
     put(value) {
@@ -119,9 +118,7 @@ function progressStreamer(tsBegin, durationS) {
       const pct = Math.min(99, Math.max(lastPct, (100 * pos) / durationS));
       if (pct - lastPct < 1 && lastPct > 0) return;
       lastPct = pct;
-      const elapsed = (performance.now() - t0) / 1000;
-      const eta = pct > 5 ? Math.max(0, Math.round((elapsed * (100 - pct)) / pct)) : null;
-      report("transcribe", { pct, eta });
+      report("transcribe", { pct });
     },
     end() { chunk++; steps = 0; tsPos = 0; },
   };
@@ -141,7 +138,7 @@ async function run({ url, model, language }) {
     lang = detected.language;
     if (samples.length <= CHUNK_S * SAMPLE_RATE) restore = reuseEncoderOnce(asr.model, detected.encoder_outputs);
   }
-  report("transcribe", { pct: 0, eta: null });
+  report("transcribe", { pct: 0 });
   try {
     const out = await asr(samples, {
       language: lang,

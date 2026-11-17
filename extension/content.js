@@ -37,7 +37,7 @@ function progressText(p) {
     case "prepare": return t("progressPrepare");
     case "load": return p.pct == null ? t("progressLoad", t(`model_${p.model}`)) : t("progressLoadPct", t(`model_${p.model}`), Math.round(p.pct));
     case "detect": return t("progressDetect");
-    case "transcribe": return p.eta == null ? t("progressTranscribe", Math.round(p.pct)) : t("progressTranscribeEta", Math.round(p.pct), p.eta);
+    case "transcribe": return t("progressTranscribe", Math.round(p.pct));
     default: return t("progressWaiting");
   }
 }
@@ -63,7 +63,10 @@ function transcribe(id, url, model) {
 const css = (el, style) => { el.style.cssText = style; return el; };
 const div = (style) => css(document.createElement("div"), style);
 
-// One result block: optional title, text, progress bar, muted footer (language · time).
+// One result block: optional title, text, progress bar, muted footer.
+// Once its job starts (not while queued), the footer counts the elapsed seconds. A remaining-time estimate
+// is never reliable here: speed depends on the hardware, the speech and Whisper's windows.
+// When done, the footer shows: language · total time.
 function makeSection(title) {
   const el = div("margin-top:8px;");
   const head = div("font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.6;margin-bottom:2px;");
@@ -78,14 +81,22 @@ function makeSection(title) {
   el.append(head, out, track, foot);
 
   let sweep = null;
+  let clock = null, t0 = null;
+  const elapsed = () => Math.round((Date.now() - (t0 || Date.now())) / 1000);
+  const tick = () => {
+    try { foot.textContent = "⏱ " + t("seconds", elapsed()); } catch (_) { clearInterval(clock); } // extension reloaded
+  };
   const stopSweep = () => { if (sweep) { sweep.cancel(); sweep = null; fill.style.marginLeft = "0"; } };
   return {
     el,
-    progress(text, pct) {
+    elapsed,
+    progress(text, pct, running) {
       out.style.opacity = "0.65";
       out.style.fontSize = "13px";
       out.textContent = text;
       track.style.display = "block";
+      if (running && !clock) { t0 = Date.now(); foot.hidden = false; clock = setInterval(tick, 1000); }
+      if (clock) tick();
       if (pct == null) {
         if (sweep) return;
         fill.style.transition = "none";
@@ -99,6 +110,7 @@ function makeSection(title) {
     },
     finish(text, meta, isError) {
       stopSweep();
+      clearInterval(clock);
       track.style.display = "none";
       out.style.opacity = isError ? "0.75" : "1";
       out.style.fontSize = isError ? "13px" : "";
@@ -168,13 +180,11 @@ function mount(svg, mountedId) {
     for (let i = 0; i < models.length; i++) {
       const id = `${key}#${models[i] || "default"}`;
       const s = sections[i];
-      const t0 = Date.now();
-      progressListeners.set(id, (p) => s.progress(progressText(p), p.pct));
+      progressListeners.set(id, (p) => s.progress(progressText(p), p.pct, p.phase !== "queued"));
       try {
         if (!url) throw new Error("ERR_AUDIO_MISSING");
         const res = await transcribe(id, url, models[i]);
-        const secs = Math.round((Date.now() - t0) / 1000);
-        s.finish(res.text || t("noSpeech"), `${langName(res.language)} · ${t("seconds", secs)}`);
+        s.finish(res.text || t("noSpeech"), `${langName(res.language)} · ${t("seconds", s.elapsed())}`);
       } catch (err) {
         s.finish(errorText(err.message), "", true);
         failed = true;

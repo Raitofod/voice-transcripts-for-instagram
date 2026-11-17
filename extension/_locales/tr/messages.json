@@ -32,9 +32,6 @@
   "progressTranscribe": {
     "message": "Yazıya dökülüyor %$1"
   },
-  "progressTranscribeEta": {
-    "message": "Yazıya dökülüyor %$1 · ~$2 sn kaldı"
-  },
   "noSpeech": {
     "message": "(konuşma algılanmadı)"
   },

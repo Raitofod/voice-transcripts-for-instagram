@@ -24,7 +24,7 @@ instagram.com. La transcription est calculée sur votre ordinateur.
 - **Confidentialité.** Le décodage et la transcription se font en local, en WebAssembly et WebGPU. Il n'y a ni serveur, ni compte, ni clé d'API, ni pistage.
 - **Grande précision.** L'extension utilise Whisper large-v3-turbo par défaut. Un modèle Whisper small, plus léger, est disponible pour les ordinateurs modestes.
 - **99 langues parlées.** La langue est détectée automatiquement à chaque message. Vous pouvez aussi en fixer une.
-- **Progression en direct.** Une barre de progression indique le temps restant estimé.
+- **Progression en direct.** Une barre de progression indique l'avancement de la transcription et le temps écoulé.
 - **Gestion des modèles.** Vous choisissez le modèle, voyez l'espace disque utilisé et supprimez celui qui ne sert pas.
 - **Mode comparaison.** Les deux modèles transcrivent le même vocal côte à côte, avec leurs temps.
 - **Interface traduite.** Anglais, français, espagnol, allemand, italien, portugais (Brésil), turc et japonais.

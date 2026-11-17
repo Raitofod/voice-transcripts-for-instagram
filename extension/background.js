@@ -1,11 +1,15 @@
 // Service worker: route transcription requests from Instagram tabs to the offscreen document running Whisper.
+// Concurrent requests share one creation (a second createDocument call would fail).
+let creating = null;
 async function ensureOffscreen() {
   if (await chrome.offscreen.hasDocument()) return;
-  await chrome.offscreen.createDocument({
+  creating ??= chrome.offscreen.createDocument({
     url: "offscreen.html",
     reasons: ["WORKERS"],
     justification: "Run local Whisper speech-to-text in WebAssembly/WebGPU",
-  });
+  }).catch((e) => { if (!/single offscreen/i.test(String(e && e.message))) throw e; })
+    .finally(() => { creating = null; });
+  await creating;
 }
 
 // The offscreen page may not have registered its listener yet right after creation: retry briefly.

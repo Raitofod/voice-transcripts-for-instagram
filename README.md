@@ -36,7 +36,7 @@ own computer.
 - **Private by design.** The audio is decoded and transcribed locally with WebAssembly and WebGPU. There is no server, account, API key or tracking.
 - **High accuracy.** The extension uses Whisper large-v3-turbo by default. A lighter Whisper small model is available for slower computers.
 - **99 spoken languages.** The language is detected automatically for each message. You can also set one language to save a step.
-- **Live progress.** A progress bar shows the estimated time remaining.
+- **Live progress.** A progress bar shows how far the transcription has got, with the elapsed time.
 - **Model manager.** You pick the model, see how much disk space each one uses, and delete the model you don't use.
 - **Compare mode.** Both models transcribe the same message side by side, with their timings.
 - **Localized interface.** English, Français, Español, Deutsch, Italiano, Português (Brasil), Türkçe and 日本語.
