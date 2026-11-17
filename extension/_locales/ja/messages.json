@@ -14,6 +14,9 @@
   "progressWaiting": {
     "message": "待機中…"
   },
+  "progressQueued": {
+    "message": "待機中…（前に $1 件）"
+  },
   "progressPrepare": {
     "message": "音声を準備中…"
   },

@@ -33,6 +33,7 @@ chrome.runtime.onMessage.addListener((msg) => {
 
 function progressText(p) {
   switch (p.phase) {
+    case "queued": return t("progressQueued", p.ahead);
     case "prepare": return t("progressPrepare");
     case "load": return p.pct == null ? t("progressLoad", t(`model_${p.model}`)) : t("progressLoadPct", t(`model_${p.model}`), Math.round(p.pct));
     case "detect": return t("progressDetect");
@@ -109,6 +110,10 @@ function makeSection(title) {
 }
 
 let bubbleCount = 0;
+// Instagram unmounts and re-creates message rows (scrolling, replying, jumping to the latest message).
+// Keep each message's control by attachment id, so a transcription in progress or done survives it.
+const boxes = new Map(); // attachment_fbid -> our control
+const isId = (id) => /^\d+$/.test(id);
 function mount(svg, mountedId) {
   const playerRow = svg.parentElement;
   const holder = playerRow && playerRow.parentElement;
@@ -118,6 +123,10 @@ function mount(svg, mountedId) {
   // Hide Instagram's own transcription control (it fails with "Unable to transcribe"); it sits right after the player.
   const native = playerRow.nextElementSibling;
   if (native && native.getAttribute("role") === "button") native.style.display = "none";
+
+  // Bring back the control of a message whose row was re-created (not of a copy still on screen).
+  const kept = boxes.get(mountedId);
+  if (kept && !kept.isConnected) { holder.appendChild(kept); return; }
 
   const box = div("margin:2px 12px 10px;font-size:14px;line-height:1.4;color:inherit;max-width:320px;");
   const btn = document.createElement("button");
@@ -131,6 +140,7 @@ function mount(svg, mountedId) {
   const results = div("");
   box.append(btn, results);
   holder.appendChild(box);
+  if (isId(mountedId) && !kept) boxes.set(mountedId, box);
 
   btn.addEventListener("click", async (ev) => {
     ev.stopPropagation();
@@ -138,6 +148,7 @@ function mount(svg, mountedId) {
     const cp = holder.querySelector('clipPath[id^="waveform-clip-path-"]');
     const current = (cp && cp.closest("svg")) || svg;
     const fbid = cp ? cp.id.slice("waveform-clip-path-".length) : mountedId;
+    if (isId(fbid)) boxes.set(fbid, box); // a live message may only now have its id
     const key = "b" + ++bubbleCount;
     current.dataset.igvtKey = key;
     const url = await audioUrl(key, fbid);

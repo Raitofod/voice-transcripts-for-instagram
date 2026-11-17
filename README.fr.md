@@ -49,7 +49,8 @@ Sur un portable avec une puce graphique Intel Iris Xe, une fois le modèle charg
 
 - 9 s pour un vocal de 5 s ;
 - 11 s pour un vocal de 7 s ;
-- 14 s pour un vocal de 20 s.
+- 14 s pour un vocal de 20 s ;
+- 97 s pour un vocal de 75 s.
 
 Le modèle *Rapide* met environ 6 s pour un vocal de 7 s.
 

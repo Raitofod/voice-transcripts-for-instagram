@@ -80,10 +80,11 @@ These timings were measured on a laptop with an Intel Iris Xe iGPU, after the mo
 | 5 s           | 9 s                       |
 | 7 s           | 11 s                      |
 | 20 s          | 14 s                      |
+| 75 s          | 97 s                      |
 
 On the same machine, the *Fast* model takes about 6 s for a 7-second message.
 
-Whisper always processes audio in 30-second windows. Short messages therefore cost about as much as 30-second ones, and the time grows slowly with length.
+Whisper always processes audio in 30-second windows. Short messages therefore cost about as much as 30-second ones. Longer messages are cut into overlapping windows, so the time grows with length. Transcriptions run one at a time; the others show how many are ahead of them.
 
 When WebGPU is available, the *Accurate* model runs its encoder on the GPU. In our tests this halves the time compared with running everything on the CPU. Without WebGPU, the extension falls back to the CPU automatically.
 

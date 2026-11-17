@@ -157,11 +157,20 @@ async function run({ url, model, language }) {
   }
 }
 
-let queue = Promise.resolve(); // one transcription at a time
+// One transcription at a time. Jobs waiting their turn are told how many are ahead of them.
+let queue = Promise.resolve();
+const waiting = [];
+const reportQueue = () => waiting.forEach((j, i) => {
+  const ahead = i + (job ? 1 : 0);
+  if (ahead) chrome.runtime.sendMessage({ type: "off:progress", ...j, phase: "queued", ahead }).catch(() => {});
+});
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg.type !== "off:transcribe") return;
+  const me = { id: msg.id, tabId: msg.tabId };
+  waiting.push(me);
+  reportQueue();
   queue = queue
-    .then(() => { job = { id: msg.id, tabId: msg.tabId }; return run(msg); })
+    .then(() => { waiting.splice(waiting.indexOf(me), 1); job = me; reportQueue(); return run(msg); })
     .then((res) => sendResponse(res))
     .catch((e) => sendResponse({ error: String((e && e.message) || e) }))
     .finally(() => { job = null; });

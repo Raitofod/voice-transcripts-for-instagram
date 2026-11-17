@@ -14,6 +14,9 @@
   "progressWaiting": {
     "message": "En espera…"
   },
+  "progressQueued": {
+    "message": "En espera… ($1 por delante)"
+  },
   "progressPrepare": {
     "message": "Preparando el audio…"
   },
