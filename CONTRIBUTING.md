@@ -24,3 +24,9 @@ Spoken languages for transcription don't need translating. Their names come from
 - Plain JavaScript, Manifest V3, no build step. Load `extension/` with **Load unpacked**.
 - Please keep changes focused and match the existing style.
 - After editing, reload the extension in `chrome://extensions` **and** reload the Instagram tab.
+
+## Releasing (maintainers)
+
+1. Bump `version` in `extension/manifest.json` and `package.json`.
+2. Add a section for the new version at the top of `CHANGELOG.md`. It becomes the release notes.
+3. Commit, then push a matching tag (`git tag v1.2.3 && git push origin v1.2.3`). The release workflow builds the zip and publishes the release.

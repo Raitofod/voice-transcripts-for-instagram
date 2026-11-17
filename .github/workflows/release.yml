@@ -21,7 +21,23 @@ jobs:
       - name: Build the zip
         run: node scripts/zip.mjs
 
+      - name: Write the release notes from CHANGELOG.md
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v v="$version" '/^## \[/ { p = index($0, "[" v "]") > 0; next } /^\[[0-9.]+\]: / { next } p' CHANGELOG.md > notes.md
+          cat >> notes.md <<'EOF'
+
+          ### Install
+          1. Download the `.zip` below and unzip it into a folder you will keep.
+          2. Open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and select the folder.
+          3. Open a conversation on instagram.com and click **Transcribe** under a voice message.
+
+          **Updating?** Unzip into the same folder as before, replacing the files, then click ↻ on the extension's card in `chrome://extensions`. Your settings and downloaded model are kept.
+
+          📖 [Install guide](https://github.com/Raitofod/voice-transcripts-for-instagram#-install-in-2-minutes) · 🌐 [Website](https://raitofod.github.io/voice-transcripts-for-instagram/) · 📝 [Changelog](https://github.com/Raitofod/voice-transcripts-for-instagram/blob/main/CHANGELOG.md)
+          EOF
+
       - name: Publish the GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" dist/*.zip --title "$GITHUB_REF_NAME" --generate-notes
+        run: gh release create "$GITHUB_REF_NAME" dist/*.zip --title "$GITHUB_REF_NAME" --notes-file notes.md
