@@ -97,7 +97,7 @@ flowchart LR
   D -- progress + text --> B
 ```
 
-- **`hook.js`** runs in the page. It reads the GraphQL responses that Instagram already downloads and extracts each voice message's audio URL. It makes no extra requests to Instagram.
+- **`hook.js`** runs in the page. When you click **Transcribe**, it reads the voice message's audio URL from the data Instagram already uses to display the bubble, including messages received live. As a fallback, it also reads the API responses that Instagram already downloads. It makes no extra requests to Instagram.
 - **`content.js`** adds the button, the progress bar and the transcript under each voice message.
 - **`offscreen.js`** downloads the audio from Instagram's CDN and decodes it at 16 kHz. It detects the language and runs Whisper through [transformers.js](https://github.com/huggingface/transformers.js) and [ONNX Runtime Web](https://onnxruntime.ai/). Models are cached by the browser in the extension's own storage.
 
@@ -112,7 +112,6 @@ See [PRIVACY.md](PRIVACY.md) for the full policy.
 ## Limitations
 
 - The extension works on the instagram.com website only, not in the mobile apps.
-- Voice messages that arrive while a conversation is open are not available until you reload the page. The extension reads audio URLs from the thread data that Instagram loads.
 - Instagram's web markup changes often. If the button disappears, please [open an issue](../../issues).
 
 ## Development

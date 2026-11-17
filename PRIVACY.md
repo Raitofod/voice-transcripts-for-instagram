@@ -9,7 +9,7 @@ It does not collect, transmit, sell or share personal data.
 
 - **Voice message audio.** When you click **Transcribe**, the extension downloads that message's audio from Instagram's media servers, which your browser can already access. It decodes the audio in memory and transcribes it locally. The audio is never sent anywhere else and is discarded after transcription.
 - **Transcripts.** Transcripts are displayed in the page and are not stored or transmitted. They disappear when you reload the page.
-- **Instagram page data.** To find voice message audio URLs, the extension reads the responses Instagram sends to your browser. Nothing is extracted except those URLs, and nothing leaves your browser.
+- **Instagram page data.** To find voice message audio URLs, the extension reads the data Instagram already loads in the page: the voice message bubbles and the responses Instagram sends to your browser. Nothing is extracted except those URLs, and nothing leaves your browser.
 
 ## What the extension stores
 

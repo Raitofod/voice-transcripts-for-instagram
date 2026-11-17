@@ -5,9 +5,23 @@ const progressListeners = new Map(); // job id -> fn(progress)
 const langNames = new Intl.DisplayNames([chrome.i18n.getUILanguage()], { type: "language" });
 const langName = (code) => { try { return langNames.of(code === "jw" ? "jv" : code); } catch (_) { return code; } };
 
+const resolvers = new Map(); // attachment_fbid -> resolve(url)
 window.addEventListener("message", (e) => {
-  if (e.source === window && e.data && e.data.__igvt === "audio") audioUrls.set(e.data.id, e.data.url);
+  if (e.source !== window || !e.data) return;
+  if (e.data.__igvt === "audio") audioUrls.set(e.data.id, e.data.url);
+  if (e.data.__igvt === "resolved" && resolvers.has(e.data.id)) resolvers.get(e.data.id)(e.data.url);
 });
+
+// Ask hook.js (page world) for the audio URL: it reads it from the bubble's React data, which also covers
+// voice messages received live. Falls back to the URL seen in Instagram's API responses.
+function audioUrl(fbid) {
+  return new Promise((resolve) => {
+    const done = (url) => { resolvers.delete(fbid); clearTimeout(timer); resolve(url || audioUrls.get(fbid) || null); };
+    const timer = setTimeout(() => done(null), 1000);
+    resolvers.set(fbid, done);
+    window.postMessage({ __igvt: "resolve", id: fbid }, "*");
+  });
+}
 
 chrome.runtime.onMessage.addListener((msg) => {
   if (msg && msg.type === "ig:progress") {
@@ -117,7 +131,7 @@ function mount(svg, fbid) {
 
   btn.addEventListener("click", async (ev) => {
     ev.stopPropagation();
-    const url = audioUrls.get(fbid);
+    const url = await audioUrl(fbid);
     btn.style.display = "none";
     results.textContent = "";
 

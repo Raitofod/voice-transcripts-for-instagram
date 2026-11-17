@@ -60,6 +60,5 @@ L'audio et les transcriptions ne quittent jamais votre appareil, et les transcri
 ## Limites
 
 - L'extension fonctionne uniquement sur le site instagram.com, pas dans les applications mobiles.
-- Un vocal reçu pendant que la conversation est ouverte n'est disponible qu'après un rechargement de la page.
 
 > Ce projet n'est ni affilié à Instagram ou Meta Platforms, Inc., ni approuvé ou sponsorisé par eux.
