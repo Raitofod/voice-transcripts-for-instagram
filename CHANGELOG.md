@@ -2,6 +2,11 @@
 
 All notable changes to this project are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## [1.0.5] - 2026-11-17
+
+### Changed
+- **License:** the project is now released under the GNU General Public License v3.0, an OSI-approved open-source license. Anyone can use, modify and share it, and every copy or modified version must stay open source under the same license.
+
 ## [1.0.4] - 2026-11-17
 
 ### Changed
@@ -44,6 +49,7 @@ First public release.
 - Live progress bar, model manager with disk usage, and compare mode.
 - Interface in English, French, Spanish, German, Italian, Portuguese (Brazil), Turkish and Japanese.
 
+[1.0.5]: https://github.com/Raitofod/voice-transcripts-for-instagram/releases/tag/v1.0.5
 [1.0.4]: https://github.com/Raitofod/voice-transcripts-for-instagram/releases/tag/v1.0.4
 [1.0.3]: https://github.com/Raitofod/voice-transcripts-for-instagram/releases/tag/v1.0.3
 [1.0.2]: https://github.com/Raitofod/voice-transcripts-for-instagram/releases/tag/v1.0.2

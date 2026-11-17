@@ -7,7 +7,7 @@
 <p>
   <a href="https://github.com/Raitofod/voice-transcripts-for-instagram/releases/latest"><img src="https://img.shields.io/github/v/release/Raitofod/voice-transcripts-for-instagram?color=5b4cf0&label=version" alt="Dernière version"></a>
   <a href="https://github.com/Raitofod/voice-transcripts-for-instagram/releases"><img src="https://img.shields.io/github/downloads/Raitofod/voice-transcripts-for-instagram/total?color=5b4cf0&label=t%C3%A9l%C3%A9chargements" alt="Téléchargements"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/licence-gratuite%2C%20revente%20interdite-5b4cf0" alt="Licence : gratuite, revente interdite"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/licence-GPL--3.0-5b4cf0" alt="Licence GPL-3.0"></a>
   <img src="https://img.shields.io/badge/langues-99-5b4cf0" alt="99 langues parlées">
   <img src="https://img.shields.io/badge/prix-gratuit-5b4cf0" alt="Gratuit">
 </p>
@@ -170,7 +170,7 @@ Mesurées sur un portable de milieu de gamme (processeur Intel avec puce graphiq
 <details>
 <summary><b>C'est vraiment gratuit ?</b></summary>
 <br>
-Oui, et ça le restera. Le code source est ouvert, il n'y a ni offre payante, ni publicité, ni compte, et la licence interdit à quiconque de le vendre. La transcription tourne sur votre ordinateur, elle ne coûte donc rien à faire fonctionner.
+Oui, et ça le restera. Le code source est ouvert, il n'y a ni offre payante, ni publicité, ni compte, et la licence GPL-3.0 oblige chaque copie et chaque version modifiée à rester open source : personne ne peut en faire un produit fermé. La transcription tourne sur votre ordinateur, elle ne coûte donc rien à faire fonctionner.
 </details>
 
 <details>
@@ -270,6 +270,6 @@ Si l'extension vous est utile, une ⭐ sur ce dépôt aide d'autres personnes à
 - [OpenAI Whisper](https://github.com/openai/whisper) (MIT), exports ONNX par [onnx-community](https://huggingface.co/onnx-community)
 - [transformers.js](https://github.com/huggingface/transformers.js) (Apache-2.0) et [ONNX Runtime Web](https://github.com/microsoft/onnxruntime) (MIT), embarqués dans `extension/vendor/` (voir [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md))
 
-Publié sous [licence MIT avec la Commons Clause](LICENSE) : vous pouvez utiliser, étudier, modifier et partager le code, mais pas le vendre, ni vendre un produit construit principalement dessus. Si quelqu'un vous demande de payer pour cette extension, elle ne vient pas d'ici.
+Publié sous [licence publique générale GNU v3.0](LICENSE) : vous pouvez utiliser, étudier, modifier et partager le code, à condition que tout ce que vous distribuez à partir de lui reste open source sous la même licence. Si quelqu'un vous demande de payer pour cette extension, elle ne vient pas d'ici.
 
 <sub>Ce projet n'est ni affilié à Instagram ou Meta Platforms, Inc., ni approuvé ou sponsorisé par eux. Instagram est une marque de Meta Platforms, Inc.</sub>

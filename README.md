@@ -7,7 +7,7 @@
 <p>
   <a href="https://github.com/Raitofod/voice-transcripts-for-instagram/releases/latest"><img src="https://img.shields.io/github/v/release/Raitofod/voice-transcripts-for-instagram?color=5b4cf0&label=version" alt="Latest version"></a>
   <a href="https://github.com/Raitofod/voice-transcripts-for-instagram/releases"><img src="https://img.shields.io/github/downloads/Raitofod/voice-transcripts-for-instagram/total?color=5b4cf0" alt="Downloads"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-free%2C%20no%20resale-5b4cf0" alt="License: free, no resale"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-5b4cf0" alt="GPL-3.0 license"></a>
   <img src="https://img.shields.io/badge/languages-99-5b4cf0" alt="99 spoken languages">
   <img src="https://img.shields.io/badge/price-free-5b4cf0" alt="Free">
 </p>
@@ -169,7 +169,7 @@ Measured on a mid-range laptop (Intel Core with Iris Xe integrated graphics), wi
 <details>
 <summary><b>Is it really free?</b></summary>
 <br>
-Yes, and it will stay that way. The source code is open, there is no paid plan, no ads and no account, and the license forbids anyone from selling it. The transcription runs on your computer, so it costs nothing to run.
+Yes, and it will stay that way. The source code is open, there is no paid plan, no ads and no account, and the GPL-3.0 license requires every copy and every modified version to stay open source, so no one can turn it into a closed product. The transcription runs on your computer, so it costs nothing to run.
 </details>
 
 <details>
@@ -269,6 +269,6 @@ If you find the extension useful, a ⭐ on this repository helps other people fi
 - [OpenAI Whisper](https://github.com/openai/whisper) (MIT), ONNX exports by [onnx-community](https://huggingface.co/onnx-community)
 - [transformers.js](https://github.com/huggingface/transformers.js) (Apache-2.0) and [ONNX Runtime Web](https://github.com/microsoft/onnxruntime) (MIT), vendored in `extension/vendor/` (see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md))
 
-Released under the [MIT license with the Commons Clause](LICENSE): you are free to use, study, modify and share the code, but you may not sell it or a product built mainly on it. If someone asks you to pay for this extension, it's not from here.
+Released under the [GNU General Public License v3.0](LICENSE): you are free to use, study, modify and share the code, as long as anything you distribute based on it stays open source under the same license. If someone asks you to pay for this extension, it's not from here.
 
 <sub>This project is not affiliated with, endorsed by or sponsored by Instagram or Meta Platforms, Inc. Instagram is a trademark of Meta Platforms, Inc.</sub>
