@@ -9,8 +9,9 @@ fs.rmSync(`dist/${zip}`, { force: true });
 
 if (process.platform === "win32") {
   // bsdtar ships with Windows 10+ and, unlike Compress-Archive, writes forward-slash paths.
-  execFileSync("tar", ["-a", "-cf", `../dist/${zip}`, "*"], { cwd: "extension", stdio: "inherit" });
+  execFileSync("tar", ["-a", "-cf", `../dist/${zip}`, "*", "-C", "..", "LICENSE"], { cwd: "extension", stdio: "inherit" });
 } else {
   execFileSync("zip", ["-qr", `../dist/${zip}`, "."], { cwd: "extension", stdio: "inherit" });
+  execFileSync("zip", ["-qj", `dist/${zip}`, "LICENSE"], { stdio: "inherit" });
 }
 console.log(`dist/${zip}`);
