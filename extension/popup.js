@@ -108,6 +108,30 @@ async function renderCompare() {
   });
 }
 
+// The service worker checks GitHub for a newer release (see background.js); show it here with how to install it.
+const isNewer = (a, b) => {
+  const x = a.split(".").map(Number), y = b.split(".").map(Number);
+  for (let i = 0; i < Math.max(x.length, y.length); i++) if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0);
+  return false;
+};
+async function renderUpdate() {
+  const box = $("updateCheck");
+  const show = async () => {
+    const { updateCheck, latestVersion } = await chrome.storage.local.get(["updateCheck", "latestVersion"]);
+    box.checked = updateCheck !== false;
+    const available = box.checked && !!latestVersion && isNewer(latestVersion, chrome.runtime.getManifest().version);
+    $("update").hidden = !available;
+    if (available) $("updateText").textContent = t("updateAvailable", latestVersion);
+  };
+  box.addEventListener("change", async () => {
+    await chrome.storage.local.set({ updateCheck: box.checked });
+    note.textContent = t("noteSaved");
+  });
+  chrome.storage.onChanged.addListener((c) => { if (c.latestVersion || c.updateCheck) show(); });
+  await show();
+}
+
 renderModels();
 renderLanguage();
 renderCompare();
+renderUpdate();

@@ -108,6 +108,8 @@ Ouvrez ensuite une conversation sur [instagram.com](https://www.instagram.com/di
 <summary><b>Mettre à jour vers une nouvelle version</b></summary>
 <br>
 
+Depuis la version 1.0.6, l'extension vous prévient quand une nouvelle version sort : un badge **NEW** apparaît sur son icône.
+
 1. Téléchargez le nouveau zip depuis la [dernière version](https://github.com/Raitofod/voice-transcripts-for-instagram/releases/latest).
 2. Décompressez-le **dans le même dossier qu'avant**, en remplaçant les anciens fichiers.
 3. Ouvrez `chrome://extensions`, cliquez sur l'icône ↻ de la carte de l'extension, puis rechargez votre onglet Instagram.
@@ -135,6 +137,7 @@ Cliquez sur l'icône de l'extension dans la barre d'outils pour ouvrir les régl
 | **Modèle** | **Précis** (Whisper large-v3-turbo, 700 Mo) donne les meilleurs résultats ; c'est le choix par défaut. **Rapide** (Whisper small, 250 Mo) est plus léger, pour les ordinateurs anciens. Chaque carte indique si le modèle est téléchargé et la place qu'il occupe. Vous pouvez supprimer celui qui ne sert pas. |
 | **Langue parlée** | **Détecter automatiquement** convient à tout le monde. Si vos contacts parlent toujours la même langue, la choisir saute l'étape de détection et évite les erreurs sur les messages très courts. |
 | **Comparer les modèles** | Transcrit chaque vocal avec les deux modèles, côte à côte, avec leur durée. Pratique pour choisir le modèle adapté à votre ordinateur. |
+| **Mises à jour** | Vérifie une fois par jour si une nouvelle version est sortie. Si c'est le cas, un badge **NEW** apparaît sur l'icône de l'extension et les réglages affichent un lien de téléchargement. Seul le dernier numéro de version est demandé à GitHub. Vous pouvez le désactiver. |
 
 ## 🔒 Confidentialité
 

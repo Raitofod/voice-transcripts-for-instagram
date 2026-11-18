@@ -104,6 +104,21 @@
   "compareDesc": {
     "message": "Shows both models' transcripts under each message, with their timing. Slower; downloads the missing model."
   },
+  "updateTitle": {
+    "message": "Updates"
+  },
+  "updateDesc": {
+    "message": "Checks once a day whether a new version is out. Only the latest version number is asked from GitHub; nothing about you is sent."
+  },
+  "updateAvailable": {
+    "message": "Version $1 is available"
+  },
+  "updateHowTo": {
+    "message": "Unzip it into the same folder as before, then click ↻ on the extension's card in chrome://extensions."
+  },
+  "updateDownload": {
+    "message": "Download"
+  },
   "footer": {
     "message": "Open source · Not affiliated with Instagram or Meta"
   }

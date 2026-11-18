@@ -104,6 +104,21 @@
   "compareDesc": {
     "message": "Muestra bajo cada mensaje las transcripciones de ambos modelos, con su duración. Más lento; descarga el modelo que falte."
   },
+  "updateTitle": {
+    "message": "Actualizaciones"
+  },
+  "updateDesc": {
+    "message": "Comprueba una vez al día si hay una versión nueva. Solo se pide a GitHub el número de la última versión; no se envía nada sobre ti."
+  },
+  "updateAvailable": {
+    "message": "La versión $1 está disponible"
+  },
+  "updateHowTo": {
+    "message": "Descomprímela en la misma carpeta que antes y pulsa ↻ en la tarjeta de la extensión en chrome://extensions."
+  },
+  "updateDownload": {
+    "message": "Descargar"
+  },
   "footer": {
     "message": "Código abierto · Sin relación con Instagram ni Meta"
   }

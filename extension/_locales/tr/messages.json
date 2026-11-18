@@ -104,6 +104,21 @@
   "compareDesc": {
     "message": "Her mesajın altında iki modelin dökümünü ve süresini gösterir. Daha yavaştır; eksik modeli indirir."
   },
+  "updateTitle": {
+    "message": "Güncellemeler"
+  },
+  "updateDesc": {
+    "message": "Yeni bir sürüm çıkıp çıkmadığını günde bir kez denetler. GitHub'dan yalnızca en son sürüm numarası istenir; seninle ilgili hiçbir şey gönderilmez."
+  },
+  "updateAvailable": {
+    "message": "$1 sürümü kullanılabilir"
+  },
+  "updateHowTo": {
+    "message": "Önceki klasörün aynısına çıkar, ardından chrome://extensions sayfasında uzantının kartındaki ↻ simgesine tıkla."
+  },
+  "updateDownload": {
+    "message": "İndir"
+  },
   "footer": {
     "message": "Açık kaynak · Instagram veya Meta ile bağlantılı değildir"
   }

@@ -104,6 +104,21 @@
   "compareDesc": {
     "message": "Zeigt unter jeder Nachricht die Transkripte beider Modelle samt Dauer. Langsamer; lädt das fehlende Modell herunter."
   },
+  "updateTitle": {
+    "message": "Updates"
+  },
+  "updateDesc": {
+    "message": "Prüft einmal täglich, ob eine neue Version erschienen ist. GitHub wird nur nach der neuesten Versionsnummer gefragt; über dich wird nichts gesendet."
+  },
+  "updateAvailable": {
+    "message": "Version $1 ist verfügbar"
+  },
+  "updateHowTo": {
+    "message": "Entpacke sie in denselben Ordner wie zuvor und klicke dann in chrome://extensions auf der Karte der Erweiterung auf ↻."
+  },
+  "updateDownload": {
+    "message": "Herunterladen"
+  },
   "footer": {
     "message": "Open Source · Nicht mit Instagram oder Meta verbunden"
   }

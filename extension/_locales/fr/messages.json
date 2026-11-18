@@ -104,6 +104,21 @@
   "compareDesc": {
     "message": "Affiche sous chaque vocal les transcriptions des deux modèles, avec leur durée. Plus lent ; télécharge le modèle manquant."
   },
+  "updateTitle": {
+    "message": "Mises à jour"
+  },
+  "updateDesc": {
+    "message": "Vérifie une fois par jour si une nouvelle version est sortie. Seul le dernier numéro de version est demandé à GitHub ; rien vous concernant n'est envoyé."
+  },
+  "updateAvailable": {
+    "message": "La version $1 est disponible"
+  },
+  "updateHowTo": {
+    "message": "Décompressez-la dans le même dossier qu'avant, puis cliquez sur ↻ sur la carte de l'extension dans chrome://extensions."
+  },
+  "updateDownload": {
+    "message": "Télécharger"
+  },
   "footer": {
     "message": "Open source · Sans lien avec Instagram ou Meta"
   }

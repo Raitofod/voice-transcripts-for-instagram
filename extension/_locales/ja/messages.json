@@ -104,6 +104,21 @@
   "compareDesc": {
     "message": "各メッセージの下に両モデルの文字起こしと所要時間を表示します。時間がかかり、不足しているモデルをダウンロードします。"
   },
+  "updateTitle": {
+    "message": "アップデート"
+  },
+  "updateDesc": {
+    "message": "新しいバージョンが出ているかを 1 日 1 回確認します。GitHub には最新のバージョン番号を問い合わせるだけで、あなたに関する情報は送信されません。"
+  },
+  "updateAvailable": {
+    "message": "バージョン $1 が利用可能です"
+  },
+  "updateHowTo": {
+    "message": "以前と同じフォルダーに展開してから、chrome://extensions の拡張機能カードで ↻ をクリックしてください。"
+  },
+  "updateDownload": {
+    "message": "ダウンロード"
+  },
   "footer": {
     "message": "オープンソース · Instagram および Meta とは無関係です"
   }

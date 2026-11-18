@@ -2,6 +2,11 @@
 
 All notable changes to this project are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## [1.0.6] - 2026-11-18
+
+### Added
+- **Update notifications.** Once a day, the extension checks GitHub for a new version. When one is out, a **NEW** badge appears on its icon and the settings show a download link and how to install it. It can be turned off in the settings (**Updates**).
+
 ## [1.0.5] - 2026-11-17
 
 ### Changed
@@ -49,6 +54,7 @@ First public release.
 - Live progress bar, model manager with disk usage, and compare mode.
 - Interface in English, French, Spanish, German, Italian, Portuguese (Brazil), Turkish and Japanese.
 
+[1.0.6]: https://github.com/Raitofod/voice-transcripts-for-instagram/releases/tag/v1.0.6
 [1.0.5]: https://github.com/Raitofod/voice-transcripts-for-instagram/releases/tag/v1.0.5
 [1.0.4]: https://github.com/Raitofod/voice-transcripts-for-instagram/releases/tag/v1.0.4
 [1.0.3]: https://github.com/Raitofod/voice-transcripts-for-instagram/releases/tag/v1.0.3

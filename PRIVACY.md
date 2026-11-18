@@ -1,6 +1,6 @@
 # Privacy Policy
 
-_Last updated: November 17, 2026_
+_Last updated: November 18, 2026_
 
 Voice Transcripts for Instagram ("the extension") transcribes Instagram voice messages **on your device**.
 It does not collect, transmit, sell or share personal data.
@@ -13,13 +13,14 @@ It does not collect, transmit, sell or share personal data.
 
 ## What the extension stores
 
-- Your settings (chosen model, spoken language, compare mode), in `chrome.storage.local` on your device.
+- Your settings (chosen model, spoken language, compare mode, update check), and the latest version number found on GitHub, in `chrome.storage.local` on your device.
 - The Whisper model files, in the browser's cache for the extension. You can delete them from the settings panel or by removing the extension.
 
 ## Network requests
 
 - `*.fbsbx.com`, `*.fbcdn.net` and `*.cdninstagram.com`, to download the voice message you asked to transcribe.
 - `huggingface.co` and `*.hf.co`, to download the open-source Whisper model files the first time you use a model.
+- `api.github.com`, once a day, to read the version number of the extension's latest release, so you can be told when an update is out. The request carries no cookies and no data about you. You can turn it off in the settings (**Updates**).
 
 There are no analytics, no telemetry, no ads and no third-party servers operated by the author.
 

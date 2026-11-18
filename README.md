@@ -107,6 +107,8 @@ Then open a conversation on [instagram.com](https://www.instagram.com/direct/inb
 <summary><b>How to update to a new version</b></summary>
 <br>
 
+From version 1.0.6, the extension tells you when a new version is out: a **NEW** badge appears on its icon.
+
 1. Download the new zip from the [latest release](https://github.com/Raitofod/voice-transcripts-for-instagram/releases/latest).
 2. Unzip it **into the same folder as before**, replacing the old files.
 3. Open `chrome://extensions` and click the reload icon ↻ on the extension's card, then reload your Instagram tab.
@@ -134,6 +136,7 @@ Click the extension's icon in the toolbar to open the settings.
 | **Model** | **Accurate** (Whisper large-v3-turbo, 700 MB) gives the best results and is the default. **Fast** (Whisper small, 250 MB) is lighter, for older computers. Each card shows whether the model is downloaded and how much space it takes. You can delete the model you don't use. |
 | **Spoken language** | **Detect automatically** works for everyone. If your contacts always speak the same language, choosing it skips the detection step and avoids mistakes on very short messages. |
 | **Compare models** | Transcribes each message with both models, side by side, with their timings. This is useful for choosing the model that suits your computer. |
+| **Updates** | Checks once a day whether a new version is out. When there is one, a **NEW** badge appears on the extension's icon and the settings show a download link. It only asks GitHub for the latest version number. You can turn it off. |
 
 ## 🔒 Privacy
 
